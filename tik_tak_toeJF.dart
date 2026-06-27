@@ -75,7 +75,7 @@ bool tableroLleno(List<List<String>> tablero) {
 // Pide al jugador una posición válida (fila col)
 (int, int) pedirMovimiento(String jugador) {
   while (true) {
-    stdout.write('Jugador $jugador ingresa fila y columna (ej: 1 2): ');
+    stdout.write('Jugador $jugador ingresa fila y columna (1 2): ');
     final entrada = stdin.readLineSync()?.trim() ?? '';
     final partes = entrada.split(RegExp(r'\s+'));
     if (partes.length == 2) {
@@ -85,7 +85,7 @@ bool tableroLleno(List<List<String>> tablero) {
         return (fila - 1, col - 1); // convertir a índice 0-based
       }
     }
-    print('Entrada inválida. Ingresa dos números separados por espacio.');
+    print('Entrada inválida. Ingresa dos numeros separados por espacio.');
   }
 }
 
@@ -110,24 +110,24 @@ void main() {
     final ganador = verificarGanador(tablero);
     if (ganador != null) {
       mostrarTablero(tablero);
-      print('¡Jugador $ganador gana!\n');
+      print('Jugador $ganador gana!\n');
       break;
     }
 
     if (tableroLleno(tablero)) {
       mostrarTablero(tablero);
-      print('¡Empate!\n');
+      print('Empate!\n');
       break;
     }
 
     turno++;
   }
 
-  stdout.write('¿Jugar de nuevo? (s/n): ');
+  stdout.write('Jugar de nuevo? (s/n): ');
   final respuesta = stdin.readLineSync()?.trim().toLowerCase();
-  if (respuesta == 's') {
+  if (respuesta == 's' or respuesta == "si") {
     main(); // reinicio recursivo
   } else {
-    print('¡Hasta luego!');
+    print('Hasta luego!');
   }
 }
